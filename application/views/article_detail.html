@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <label>Article title: <?php echo $article_title; ?></label>
+        <br/>
+        <br/>
+        <label>Article content: <?php echo $article_content; ?></label>
+        <br></br>
+        <button onclick="returnToParentPage()">Return to Index</button>        
+    </body>
+</html>
+
+<script>
+    // we need this function for extracting the parent's url of the current url
+    function returnToParentPage() {
+        var current_url = window.location.href;
+
+        var last_slash_index;
+        for(i=current_url.length - 1;i>=0;i--) {
+            if(current_url.charAt(i) == '/') {
+                // the current character is the last slash of the current url
+                last_slash_index = i;
+                break;
+            }
+        }
+        
+        var parent_page_url = current_url.substr(0, i + 1);
+        window.location.href = parent_page_url; // redirect to the parent url of the current url
+    }
+</script>

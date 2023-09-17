@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form name="myForm" method="post" action="" id="input" onsubmit="return validateForm()">
+          <label for="title">Article title:</label><br>
+          <input type="text" id="input_title" name="title" value="<?php echo $article_title; ?>"><br>
+          <label for="content">Article content:</label><br>
+          <textarea id="input_content" name="content" rows="4" cols="50" value=""><?php echo $article_content; ?></textarea>
+          <br/>
+          <br/>
+          <input id="btn" type="submit" value="Save" onclick="">
+      </form>
+      <br></br>
+      <label id="exception_label" hidden>Some fields have been left empty</label>
+    </body>
+</html>
+
+<script>
+    function validateForm() {
+        var content = document.getElementById('input_content').value;
+        var title = document.getElementById('input_title').value; // with innerHTML instead of value property the validation doesn't work
+
+        var exception_label = document.getElementById('exception_label');
+
+        if (title === "" || content === "") {
+            exception_label.hidden = false; // unhide the exception_label
+            return false; //avoid the submitting of the form
+        } else {
+            return true;
+        }
+    }
+</script>
+
+<style>
+    #exception_label {
+        color: black;
+        background-color: red;
+    }
+</style>
