@@ -62,4 +62,5 @@ class Article {
         $articles = $GLOBALS['f3']->get('DB')->exec('SELECT * FROM article');
         return $articles;
     }
+    
 }
