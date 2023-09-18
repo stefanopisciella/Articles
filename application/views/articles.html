@@ -8,16 +8,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <ul>
-            <?php foreach($list_elements as $list_element): ?> 
-            <?php echo $list_element; ?>
-            <?php endforeach; ?>
-        </ul>     
-        <button onclick="window.location.href = window.location.href + '/view';">New article</button>        
+        <?php foreach($list_elements as $list_element): ?> 
+        <?php echo $list_element; ?>
+        <?php endforeach; ?>
+        <br></br>
+        <button type="button" class="btn btn-default" onclick="window.location.href = window.location.href + '/view';">New article</button>        
     </body>
 </html>
 
@@ -53,5 +58,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         var edit_article_url = articles_url + "/view?id=" + clicked_button_value;
         
         window.location.href = edit_article_url; // redirect to the url contained in edit_article_url
+    }
+
+    function getArticleDetails(clicked_button_object) {
+        clicked_button_value = getClickedButtonValue(clicked_button_object);
+        
+        var articles_url = window.location.href;
+        var article_details_url = articles_url + "/" + clicked_button_value;
+        
+        window.location.href = article_details_url; // redirect to the url contained in edit_article_url
     }
 </script>

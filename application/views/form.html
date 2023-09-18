@@ -8,19 +8,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+ 
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
     <body>
         <form name="myForm" method="post" action="" id="input" onsubmit="return validateForm()">
-          <label for="title">Article title:</label><br>
-          <input type="text" id="input_title" name="title" value="<?php echo $article_title; ?>"><br>
+          <div class="input-group">
+            <label for="title">Article title:</label><br>
+            <input type="text" id="input_title" name="title" class="form-control" value="<?php echo $article_title; ?>">
+          </div>
+
           <label for="content">Article content:</label><br>
           <textarea id="input_content" name="content" rows="4" cols="50" value=""><?php echo $article_content; ?></textarea>
           <br/>
           <br/>
           <input id="btn" type="submit" value="Save" onclick="">
+          <br></br>
+          <div id="exception_label" hidden class="alert alert-danger" role="alert">Some fields have been left empty</div>
       </form>
-      <br></br>
-      <label id="exception_label" hidden>Some fields have been left empty</label>
     </body>
 </html>
 

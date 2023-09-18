@@ -1,1 +1,14 @@
-<li><a href="/Articles/public/article/<?php echo $article_id; ?>"><?php echo $article_title; ?></a><button value="<?php echo $article_id; ?>" onclick="updateArticle(this)">Edit</button><button value="<?php echo $article_id; ?>" onclick="deleteArticle(this);">Remove</button></li>
+<div class="btn-toolbar" role="toolbar" aria-label="...">
+    <!-- in the same toolbar are included all buttons placed in the same row -->
+    <div class="btn-group" role="group" aria-label="...">
+        <button onclick="getArticleDetails(this);" type="button" class="btn btn-default" value="<?php echo $article_id; ?>"><?php echo $article_title; ?></button>
+    </div>
+    <div class="btn-group" role="group" aria-label="...">
+        <button onclick="updateArticle(this);" type="button" class="btn btn-default" value="<?php echo $article_id; ?>">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        </button>
+        <button onclick="deleteArticle(this);" type="button" class="btn btn-default" value="<?php echo $article_id; ?>">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        </button>
+    </div>
+</div>
