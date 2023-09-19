@@ -1,0 +1,21 @@
+<tr>
+    <td><?php echo $article_id; ?></td>
+    <td><a href="./article/<?php echo $article_id; ?>"><?php echo $article_title; ?></a></td>
+    <td><?php echo $creation_datetime; ?></td>
+    <td><?php if($last_update_datetime != null): 
+            echo $last_update_datetime;
+        else:
+            echo '-';
+        endif;?>
+    </td>
+    <td>
+        <div class="btn-group" role="group" aria-label="...">
+            <button onclick="updateArticle(this);" type="button" class="btn btn-default" value="<?php echo $article_id; ?>">
+                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            </button>
+            <button onclick="deleteArticle(this);" type="button" class="btn btn-default" value="<?php echo $article_id; ?>">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </button>
+        </div>
+    </td>
+</tr>

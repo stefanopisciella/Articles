@@ -33,7 +33,7 @@ class Article {
         if($article_id == null) {
             // CREATION of the article
             $GLOBALS['f3']->get('DB')->exec(
-                'INSERT INTO article (title, content) VALUES (?,?);',
+                'INSERT INTO article (title, content, creation_datetime, last_update_datetime) VALUES (?,?, NOW(), NULL);',
                 $article
             );
         } else {
@@ -41,9 +41,9 @@ class Article {
             array_push($article, $article_id);
         
             $GLOBALS['f3']->get('DB')->exec(
-                'UPDATE article a
-                 SET a.title = ?, a.content = ?
-                 WHERE a.ID = ?;',
+                'UPDATE article
+                 SET title = ?, content = ?, last_update_datetime = NOW()
+                 WHERE ID = ?;',
                 $article
             );
         }

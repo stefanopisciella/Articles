@@ -99,6 +99,8 @@ class Article {
                 
             $GLOBALS['f3']->set('article_title', $old_article[0]['title']);
             $GLOBALS['f3']->set('article_content', $old_article[0]['content']);
+            $GLOBALS['f3']->set('creation_datetime', $old_article[0]['creation_datetime']);
+            $GLOBALS['f3']->set('last_update_datetime', $old_article[0]['last_update_datetime']);
 
             echo $GLOBALS['view']->render('application/views/form.html'); 
             
@@ -161,15 +163,17 @@ class Article {
         
         $num_articles = sizeof($articles);
         if($num_articles > 0) {
-            $list_elements= Array();
+            $table_rows= Array();
     
             for($i=0;$i<$num_articles;$i++) {
                 $GLOBALS['f3']->set('article_id', $articles[$i]['ID']); // the id is also flashed to the "value" attribute of the Remove button
                 $GLOBALS['f3']->set('article_title', $articles[$i]['title']);
-                $list_element = $GLOBALS['view']->render('application/views/list_element.html');
-                array_push($list_elements, $list_element);
+                $GLOBALS['f3']->set('creation_datetime', $articles[$i]['creation_datetime']);
+                $GLOBALS['f3']->set('last_update_datetime', $articles[$i]['last_update_datetime']);
+                $table_row = $GLOBALS['view']->render('application/views/table_row.html');
+                array_push($table_rows, $table_row);
             }
-            $GLOBALS['f3']->set('list_elements', $list_elements);
+            $GLOBALS['f3']->set('table_rows', $table_rows);
             echo $GLOBALS['view']->render('application/views/articles.html');
         } else{
             echo 'No available articles';
