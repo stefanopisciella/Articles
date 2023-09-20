@@ -1,9 +1,10 @@
 <?php
 namespace controllers;
 
+require "application/controllers/AbstractController.php";
 use models\Article as ModelArticle;
 
-class Article {
+class Article extends AbastractController{
 
     /*
     public static function add() {
@@ -102,7 +103,7 @@ class Article {
             $GLOBALS['f3']->set('creation_datetime', $old_article[0]['creation_datetime']);
             $GLOBALS['f3']->set('last_update_datetime', $old_article[0]['last_update_datetime']);
 
-            echo $GLOBALS['view']->render('application/views/form.html'); 
+            echo parent::render('application/views/form.html');
             
             Article::save($article_id);
 
@@ -115,7 +116,7 @@ class Article {
             $GLOBALS['f3']->set('article_title', ''); 
             $GLOBALS['f3']->set('article_content', '');
         
-            echo $GLOBALS['view']->render('application/views/form.html');
+            echo parent::render('application/views/form.html');
 
             Article::save(""); // save() function takes in input "" as article ID 
 
@@ -155,7 +156,7 @@ class Article {
         $GLOBALS['f3']->set('article_title', $article[0]['title']);
         $GLOBALS['f3']->set('article_content', $article[0]['content']);
 
-        echo $GLOBALS['view']->render('application/views/article_detail.html');
+        echo parent::render('application/views/article_detail.html');
     }
 
     public static function index() {
@@ -170,11 +171,11 @@ class Article {
                 $GLOBALS['f3']->set('article_title', $articles[$i]['title']);
                 $GLOBALS['f3']->set('creation_datetime', $articles[$i]['creation_datetime']);
                 $GLOBALS['f3']->set('last_update_datetime', $articles[$i]['last_update_datetime']);
-                $table_row = $GLOBALS['view']->render('application/views/table_row.html');
+                $table_row = $GLOBALS['view']->render('application/views/table_row.html'); // note that in this case i don't use "parent::render" because we don't have to flash the header
                 array_push($table_rows, $table_row);
             }
             $GLOBALS['f3']->set('table_rows', $table_rows);
-            echo $GLOBALS['view']->render('application/views/articles.html');
+            echo parent::render('application/views/articles.html');
         } else{
             echo 'No available articles';
         }
