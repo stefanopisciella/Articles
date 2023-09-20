@@ -1,10 +1,12 @@
 <?php
-namespace utils;
+require "vendor/bcosca/fatfree-core/base.php";
 
-class MyView extends \View {
-    public function render($file,$mime='text/html',array $hive=NULL,$ttl=0) {
-        parent::render($file,$mime='text/html',array $hive=NULL,$ttl=0);
+class MyView extends View {
+    function render($file,$mime='text/html',array $hive=NULL,$ttl=0) {
+        parent::render($file);
+        // echo "OK";
     }
+
 }
 
 /*
