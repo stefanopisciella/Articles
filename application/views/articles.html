@@ -1,51 +1,26 @@
-<!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <div class="container">
-            <?php echo $header; ?>
-            <div class="page-header">
-                <h1>Articles</h1>
-            </div>
-            <button type="button" class="btn btn-primary" onclick="window.location.href = window.location.href + '/view';">New article</button>        
-            <div class="table-responsive">          
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Title</th>
-                        <th>Publication</th>
-                        <th>Last Update</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($table_rows as $table_row): ?> 
-                    <?php echo $table_row; ?>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
-            </div>
-        </div>
-    </body>
-</html>
-
+<div class="page-header">
+    <h1>Articles</h1>
+</div>
+<button type="button" class="btn btn-primary" onclick="window.location.href = window.location.href + '/view';">New article</button>        
+<div class="table-responsive">          
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Publication</th>
+            <th>Last Update</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($table_rows as $table_row): ?> 
+        <?php echo $table_row; ?>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+</div>
+  
 <script>
     function getClickedButtonValue(clicked_button_object) {
         clicked_button_value = clicked_button_object.value;

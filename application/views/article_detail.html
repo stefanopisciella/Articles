@@ -1,34 +1,11 @@
-<!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <?php echo $header; ?>
-        <div class="page-header">
-            <h1><?php echo $article_title; ?></h1>
-        </div>
-        <label><?php echo $article_content; ?></label>
-        <br></br>
-        <button type="button" class="btn btn-default" onclick="returnToParentPage()">
-            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-        </button>        
-    </body>
-</html>
+<div class="page-header">
+    <h1><?php echo $article_title; ?></h1>
+</div>
+<label><?php echo $article_content; ?></label>
+<br></br>
+<button type="button" class="btn btn-default" onclick="returnToParentPage()">
+    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+</button>  
 
 <script>
     // we need this function for extracting the parent's url of the current url

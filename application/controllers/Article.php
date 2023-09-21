@@ -169,8 +169,13 @@ class Article extends AbastractController{
             for($i=0;$i<$num_articles;$i++) {
                 $GLOBALS['f3']->set('article_id', $articles[$i]['ID']); // the id is also flashed to the "value" attribute of the Remove button
                 $GLOBALS['f3']->set('article_title', $articles[$i]['title']);
-                $GLOBALS['f3']->set('creation_datetime', $articles[$i]['creation_datetime']);
-                $GLOBALS['f3']->set('last_update_datetime', $articles[$i]['last_update_datetime']);
+                
+                // format the datetime
+                $creation_datetime = parent::formatDateTime($articles[$i]['creation_datetime']);
+                $last_update_datetime = parent::formatDateTime($articles[$i]['last_update_datetime']);
+
+                $GLOBALS['f3']->set('creation_datetime', $creation_datetime);
+                $GLOBALS['f3']->set('last_update_datetime', $last_update_datetime);
                 $table_row = $GLOBALS['view']->render('application/views/table_row.html'); // note that in this case i don't use "parent::render" because we don't have to flash the header
                 array_push($table_rows, $table_row);
             }
