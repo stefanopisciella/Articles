@@ -1,11 +1,13 @@
+<button type="button" class="btn btn-primary" onclick="returnToParentPage();">Turn back</button>        
 <div class="page-header">
     <h1><?php echo $article_title; ?></h1>
 </div>
 <label><?php echo $article_content; ?></label>
-<br></br>
-<button type="button" class="btn btn-default" onclick="returnToParentPage()">
-    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-</button>  
+<!--
+    <button type="button" class="btn btn-default" onclick="returnToParentPage()">
+        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+    </button> 
+-->
 
 <script>
     // we need this function for extracting the parent's url of the current url

@@ -159,8 +159,42 @@ class Article extends AbastractController{
         echo parent::render('application/views/article_detail.html');
     }
 
-    public static function index() {
+    /*
+    public static function indexOld() {
         $articles = ModelArticle::index(); 
+        
+        $num_articles = sizeof($articles);
+        if($num_articles > 0) {
+            $table_rows= Array();
+    
+            for($i=0;$i<$num_articles;$i++) {
+                $GLOBALS['f3']->set('article_id', $articles[$i]['ID']); // the id is also flashed to the "value" attribute of the Remove button
+                $GLOBALS['f3']->set('article_title', $articles[$i]['title']);
+                
+                // format the datetime
+                $creation_datetime = parent::formatDateTime($articles[$i]['creation_datetime']);
+                $last_update_datetime = parent::formatDateTime($articles[$i]['last_update_datetime']);
+
+                $GLOBALS['f3']->set('creation_datetime', $creation_datetime);
+                $GLOBALS['f3']->set('last_update_datetime', $last_update_datetime);
+                $table_row = $GLOBALS['view']->render('application/views/table_row.html'); // note that in this case i don't use "parent::render" because we don't have to flash the header
+                array_push($table_rows, $table_row);
+            }
+            $GLOBALS['f3']->set('table_rows', $table_rows);
+            echo parent::render('application/views/articles.html');
+        } else{
+            echo 'No available articles';
+        }
+    } */
+
+    public static function index() {
+        if($GLOBALS['f3']->exists('GET.page')) {
+            $current_page = $GLOBALS['f3']->get('GET.page');
+        } else {
+            $current_page = 1; // if the url doesn't contain the "page" parameter, by default, to the user will be showed the first page
+        }
+        
+        $articles = ModelArticle::index($current_page); 
         
         $num_articles = sizeof($articles);
         if($num_articles > 0) {

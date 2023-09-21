@@ -58,8 +58,20 @@ class Article {
         return $article;
     }
 
-    public static function index() {
+    public static function indexOld() {
         $articles = $GLOBALS['f3']->get('DB')->exec('SELECT * FROM article');
+        return $articles;
+    }
+
+    public static function index($current_page) {
+        $articles = $GLOBALS['f3']->get('DB')->exec(
+            'SELECT * 
+            FROM article
+            WHERE ID > (?-1)*3   
+            LIMIT 3;',
+            $current_page
+        );
+
         return $articles;
     }
     
