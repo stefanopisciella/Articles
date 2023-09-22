@@ -18,4 +18,13 @@ class AbastractController{
         return $datetime->format('d/m/Y g:i A');
     }
 
+    public static function getPreviousPage(){
+        $previous_page = $GLOBALS['f3']->get('SERVER.HTTP_REFERER');
+        
+        if(!is_null($previous_page)) {
+            return $previous_page;
+        } else {
+            return "/article"; // return to the home         
+        }
+    }
 }

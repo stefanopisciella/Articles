@@ -20,7 +20,8 @@ $f3->set('ESCAPE',FALSE);
 
 // ROUTES
 $f3->route('GET /article/remove/@id','controllers\Article->remove');
-$f3->route('GET|POST /article/view','controllers\Article->view');
+$f3->route('GET /article/view/@id','controllers\Article->view');
+$f3->route('POST /article/save/@id','controllers\Article->save');
 $f3->route('GET /article/@id', 'controllers\Article->getById');
 $f3->route('GET /article','controllers\Article->index');
 

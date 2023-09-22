@@ -10,12 +10,12 @@
     </td>
     <td>
         <div class="btn-group" role="group" aria-label="...">
-            <button onclick="updateArticle(this);" type="button" class="btn btn-default" value="<?php echo $article_id; ?>">
+            <a href="./article/view/<?php echo $article_id; ?>" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-            </button>
-            <button onclick="deleteArticle(this);" type="button" class="btn btn-default" value="<?php echo $article_id; ?>">
+            </a>
+            <a href="./article/remove/<?php echo $article_id; ?>" type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-            </button>
+            </a>
         </div>
     </td>
 </tr>
