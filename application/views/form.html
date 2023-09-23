@@ -1,5 +1,5 @@
 
-<form name="myForm" method="post" action="./article/save" id="input" onsubmit="return validateForm()">
+<form name="myForm" id="form" method="post" action="<?php echo $form_action; ?>" id="input" onsubmit="return validateForm()">
     <div class="input-group">
         <label for="title">Article title:</label><br>
         <input type="text" id="input_title" name="title" class="form-control" value="<?php echo $article_title; ?>">
@@ -9,13 +9,33 @@
     <textarea id="input_content" name="content" rows="4" cols="50" value=""><?php echo $article_content; ?></textarea>
     <br/>
     <br/>
-    <input id="btn" type="submit" value="Save" onclick="">
+    <input type="button" class="btn btn-default" id="btn" value="Save" onclick="validateForm();">
     <br></br>
     <div id="exception_label" hidden class="alert alert-danger" role="alert">Some fields have been left empty</div>
 </form>
   
 
 <script>
+    function validateForm() {
+        var content = document.getElementById('input_content').value.trim();
+        var title = document.getElementById('input_title').value.trim(); // with innerHTML instead of value property the validation doesn't work
+        
+        var exception_label = document.getElementById('exception_label');
+
+        var form = document.getElementById('form');
+
+        if (title === "" || content === "") {
+            exception_label.hidden = false; // unhide the exception_label
+        } else {
+            form.submit();
+            /*
+            var current_url_prefix = "https://" + window.location.host;
+            
+            window.location.href = current_url_prefix + "Articles/public/article/save/4"; */
+        }
+    }
+
+    /*
     function validateForm() {
         var content = document.getElementById('input_content').value;
         var title = document.getElementById('input_title').value; // with innerHTML instead of value property the validation doesn't work
@@ -28,7 +48,7 @@
         } else {
             return true;
         }
-    }
+    } */
 </script>
 
 <style>

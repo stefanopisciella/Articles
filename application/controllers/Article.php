@@ -100,6 +100,8 @@ class Article extends AbastractController{
                 
             $GLOBALS['f3']->set('article_title', $old_article[0]['title']);
             $GLOBALS['f3']->set('article_content', $old_article[0]['content']); 
+            
+            $GLOBALS['f3']->set('form_action', $GLOBALS['url_prefix'] . "article/save/" . $article_id); 
 
             echo parent::render('application/views/form.html');
 
@@ -109,7 +111,9 @@ class Article extends AbastractController{
             // removing templating tags from the form template
             $GLOBALS['f3']->set('article_title', ''); 
             $GLOBALS['f3']->set('article_content', '');
-        
+            
+            $GLOBALS['f3']->set('form_action', $GLOBALS['url_prefix'] . "article/save/"); 
+
             echo parent::render('application/views/form.html');
         }
     }
@@ -125,7 +129,9 @@ class Article extends AbastractController{
                 2 => $article_content
             );
 
+            $article_id = null;
             $article_id = $GLOBALS['f3']->get('PARAMS.id');
+            
             ModelArticle::save($article, $article_id); 
             
             if($article_id == null) {
