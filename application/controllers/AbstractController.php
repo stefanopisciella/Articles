@@ -34,7 +34,7 @@ class AbastractController{
         items: are all the items to be paginated
         html_page: is the html page that will be divided in pages
     */
-    public static function definePagination($context, $number_of_items, $url_to_html_page){
+    public static function definePagination($context, $number_of_items, $url_to_html_view, $current_page){
         if($context == "articles") {
             $max_num_of_items_for_page = $GLOBALS['max_num_of_articles_for_page'];
         }
@@ -45,17 +45,29 @@ class AbastractController{
             $num_pages_needed += 1;
         } 
 
-        AbastractController::addPagesButtons($url_to_html_page, $num_pages_needed);
+        AbastractController::addPageButtons($url_to_html_view, $num_pages_needed, $current_page);
     }
 
-    public static function addPagesButtons($url_to_html_page, $num_pages){
+    public static function addPageButtons($url_to_html_view, $num_pages, $current_page){
         $page_buttons = "";
         for($i=1;$i<=$num_pages;$i++) {
-            $url_to_html_page = "?page=" . $i; 
-            $page_buttons .= '<li><a href="' . $url_to_html_page . '">' . $i .'</a></li>';
+            $url_to_page = $url_to_html_view . "?page=" . $i; 
+
+            if($i == $current_page) {
+                $page_buttons .= AbastractController::addCurrentPageButton($current_page, $url_to_page);
+            } else {
+                $page_buttons .= '<li><a href="' . $url_to_page. '">'. $i .'</a></li>';
+            }
         }
         $GLOBALS['f3']->set('page_buttons', $page_buttons);
     }
+
+    public static function addCurrentPageButton($current_page, $url_to_page){
+        return '<li class="active"><a href="' . $url_to_page . '">' . $current_page . '<span class="sr-only">(current)</span></a></li>';
+    }
+
+
+
 
 
 
