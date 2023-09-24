@@ -36,6 +36,7 @@ class AbastractController{
     */
     public static function definePagination($context, $number_of_items, $url_to_html_view, $current_page){
         if($context == "articles") {
+            // the elements to be paginated are articles
             $max_num_of_items_for_page = $GLOBALS['max_num_of_articles_for_page'];
         }
 
@@ -46,6 +47,8 @@ class AbastractController{
         } 
 
         AbastractController::addPageButtons($url_to_html_view, $num_pages_needed, $current_page);
+        AbastractController::addPreviousPageButton($current_page, $url_to_html_view);
+        AbastractController::addNextPageButton($current_page, $url_to_html_view, $num_pages_needed);
     }
 
     public static function addPageButtons($url_to_html_view, $num_pages, $current_page){
@@ -54,7 +57,7 @@ class AbastractController{
             $url_to_page = $url_to_html_view . "?page=" . $i; 
 
             if($i == $current_page) {
-                $page_buttons .= AbastractController::addCurrentPageButton($current_page, $url_to_page);
+                $page_buttons .= AbastractController::addCurrentPageButton($current_page, $url_to_page); // this button in relative to the current page
             } else {
                 $page_buttons .= '<li><a href="' . $url_to_page. '">'. $i .'</a></li>';
             }
@@ -63,15 +66,48 @@ class AbastractController{
     }
 
     public static function addCurrentPageButton($current_page, $url_to_page){
-        return '<li class="active"><a href="' . $url_to_page . '">' . $current_page . '<span class="sr-only">(current)</span></a></li>';
+        return '<li class="active"><a href="' . $url_to_page . '">' . $current_page . '<span class="sr-only">(current)</span></a></li>'; // bootstrap documentation recommends to use <span> instead of <a>
     }
 
+    public static function addPreviousPageButton($current_page, $url_to_html_view){
+        if($current_page == 1) {
+            // disable the previous_page_button
+            $previous_page_button = '<li class="disabled">
+                                        <a href="" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>'; // !!! remamber to remove the value of the attribute "href" if you want to disable the button
 
+        } else {
+            $url_to_previous_page = $url_to_html_view  . "?page=" . ($current_page - 1); 
+            $previous_page_button = '<li>
+                                        <a href="'. $url_to_previous_page .'" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>';
+        }
 
+        $GLOBALS['f3']->set('previous_page_button', $previous_page_button);
+    }
 
+    public static function addNextPageButton($current_page, $url_to_html_view, $last_page_num){
+        if($current_page == $last_page_num) {
+            // disable the next_page_button
+            $next_page_button = '<li class="disabled">
+                                    <a href="" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                 </li>'; // !!! remamber to remove the value of the attribute "href" if you want to disable the button
 
+        } else {
+            $url_to_next_page = $url_to_html_view  . "?page=" . ($current_page + 1); 
+            $next_page_button = '<li>
+                                    <a href="' . $url_to_next_page . '" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                 </li>';
+        }
 
-
-
-
+        $GLOBALS['f3']->set('next_page_button', $next_page_button);
+    }
 }
