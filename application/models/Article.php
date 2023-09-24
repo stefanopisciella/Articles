@@ -58,21 +58,34 @@ class Article {
         return $article;
     }
 
-    public static function indexOld() {
+    /*
+    public static function index() {
         $articles = $GLOBALS['f3']->get('DB')->exec('SELECT * FROM article');
         return $articles;
-    }
+    } */
 
-    public static function index($current_page) {
+    public static function index($current_page, $max_num_of_articles_for_page) {
+        $parameters = array(
+            1 => ($current_page - 1) * $max_num_of_articles_for_page,
+            2 => $max_num_of_articles_for_page
+        );
+
         $articles = $GLOBALS['f3']->get('DB')->exec(
             'SELECT * 
-            FROM article
-            WHERE ID > (?-1)*3   
-            LIMIT 3;',
-            $current_page
+            FROM article 
+            LIMIT ?, ?;',
+            $parameters
         );
 
         return $articles;
     }
+
+    public static function getNumOfArticles() {
+        $restult = $GLOBALS['f3']->get('DB')->exec('SELECT COUNT(ID) FROM article');
+        $num_of_articles = $restult[0]['COUNT(ID)'];
+
+        return $num_of_articles;
+    }
+
     
 }

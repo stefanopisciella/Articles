@@ -198,8 +198,13 @@ class Article extends AbastractController{
             $current_page = 1; // if the url doesn't contain the "page" parameter, by default, to the user will be showed the first page
         }
         
-        $articles = ModelArticle::index($current_page); 
+        // defines the pagination
+        $total_num_of_articles = ModelArticle::getNumOfArticles();
+        parent::definePagination("articles", $total_num_of_articles , $GLOBALS['url_prefix'] . "article");
         
+        $articles = ModelArticle::index($current_page, $GLOBALS['max_num_of_articles_for_page']); 
+        
+        // fills the current page with articles
         $num_articles = sizeof($articles);
         if($num_articles > 0) {
             $table_rows= Array();
@@ -218,6 +223,7 @@ class Article extends AbastractController{
                 array_push($table_rows, $table_row);
             }
             $GLOBALS['f3']->set('table_rows', $table_rows);
+            
             echo parent::render('application/views/articles.html');
         } else{
             echo 'No available articles';
