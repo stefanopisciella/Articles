@@ -4,6 +4,8 @@ namespace controllers;
 require "application/controllers/AbstractController.php";
 use models\Article as ModelArticle;
 
+use function PHPSTORM_META\sql_injection_subst;
+
 class Article extends AbastractController{
 
     /*
@@ -198,13 +200,23 @@ class Article extends AbastractController{
             $current_page = 1; // if the url doesn't contain the "page" parameter, by default, to the user will be showed the first page
         }
         
+        if($GLOBALS['f3']->exists('GET.order')) {
+            $order = $GLOBALS['f3']->get('GET.order');
+        } else {
+            // it considers the default order (most recently created article first)
+            $order = 1; 
+        }
+        
         // defines the pagination
         $total_num_of_articles = ModelArticle::getNumOfArticles();
-        parent::definePagination($GLOBALS['max_num_of_articles_for_page'], $total_num_of_articles , $GLOBALS['url_prefix'] . "article", $current_page);
+        parent::definePagination($GLOBALS['max_num_of_articles_for_page'], $total_num_of_articles , $GLOBALS['url_prefix'] . "article", $current_page, $order);
         
-        $articles = ModelArticle::index($current_page, $GLOBALS['max_num_of_articles_for_page']); 
+        $articles = ModelArticle::index($current_page, $GLOBALS['max_num_of_articles_for_page'], $order); 
         
-        // fills the current page with articles
+        Article::injectArticlesIntoCurrentPage($articles);
+    }
+
+    public static function injectArticlesIntoCurrentPage($articles) {
         $num_articles = sizeof($articles);
         if($num_articles > 0) {
             $table_rows= Array();

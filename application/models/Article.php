@@ -67,18 +67,44 @@ class Article {
         return $articles;
     } */
 
-    public static function index($current_page, $max_num_of_articles_for_page) {
+    public static function index($current_page, $max_num_of_articles_for_page, $order) {
+        switch ($order) {
+            case 1:
+                // most recently created article first (this is the default order)
+                $query = "SELECT * 
+                          FROM article 
+                          ORDER BY creation_datetime DESC
+                          LIMIT ?, ?";               
+                break;
+            case 2:
+                // least recently created article first
+                $query = "SELECT * 
+                          FROM article 
+                          ORDER BY creation_datetime ASC
+                          LIMIT ?, ?";  
+                break;
+            case 3:
+                // most recently updated article first
+                $query = "SELECT * 
+                          FROM article 
+                          ORDER BY last_update_datetime DESC
+                          LIMIT ?, ?";  
+                break;
+            case 4:
+                // least recently updated article first
+                $query = "SELECT * 
+                          FROM article 
+                          ORDER BY last_update_datetime ASC
+                          LIMIT ?, ?"; 
+                break;
+        }
+        
         $parameters = array(
             1 => ($current_page - 1) * $max_num_of_articles_for_page,
             2 => $max_num_of_articles_for_page
         );
 
-        $articles = $GLOBALS['f3']->get('DB')->exec(
-            'SELECT * 
-            FROM article 
-            LIMIT ?, ?;',
-            $parameters
-        );
+        $articles = $GLOBALS['f3']->get('DB')->exec($query, $parameters);
 
         return $articles;
     }

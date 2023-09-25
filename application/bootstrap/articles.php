@@ -18,7 +18,7 @@ $f3->set('DB', new DB\SQL(
 // CONSTANTS
 $hostname = $f3->get('SCHEME') . "://" . $f3->get('HOST') . '/';
 $GLOBALS['url_prefix'] = $hostname . 'Articles/public/';
-$GLOBALS['max_num_of_articles_for_page'] = 5;
+$GLOBALS['max_num_of_articles_for_page'] = 3;
 
 $f3->set('AUTOLOAD','application/;');
 $f3->set('ESCAPE',FALSE);
