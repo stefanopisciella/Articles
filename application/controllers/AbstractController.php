@@ -34,12 +34,7 @@ class AbastractController{
         items: are all the items to be paginated
         html_page: is the html page that will be divided in pages
     */
-    public static function definePagination($context, $number_of_items, $url_to_html_view, $current_page){
-        if($context == "articles") {
-            // the elements to be paginated are articles
-            $max_num_of_items_for_page = $GLOBALS['max_num_of_articles_for_page'];
-        }
-
+    public static function definePagination($max_num_of_items_for_page, $number_of_items, $url_to_html_view, $current_page){
         $num_pages_needed = $number_of_items / $max_num_of_items_for_page;
         if($number_of_items % $max_num_of_items_for_page != 0) {
             // the last page will contain a number of items different to max_num_of_items_for_page

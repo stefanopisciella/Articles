@@ -8,8 +8,8 @@
         <tr>
             <th>#</th>
             <th>Title</th>
-            <th>Publication</th>
-            <th>Last Update</th>
+            <th><a href="" type="button" value="1" onclick="sortArticles(this);">Pubblication &#8593</a></th>
+            <th><a href="" type="button" value="2" onclick="sortArticles(this);">Last update &#8593</a></th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -69,6 +69,33 @@
         var article_details_url = articles_url + "/" + clicked_button_value;
         
         window.location.href = article_details_url; // redirect to the url contained in edit_article_url
+    }
+
+    function sortArticles(button) {
+        var order_by = button.value;
+        var current_url = document.location.href;
+        
+        current_url.removeSearch("order");
+
+        if(order_by == 1) {
+            // the "Publication" column of the table has to be ordered 
+            current_url.addFragment("order", 1);
+
+
+
+        } else if (order_by == 2) {
+            // the "Last update" column of the table has to be ordered 
+            current_url.addFragment("order", 2);
+        }
+
+        document.location.href = current_url;
+        //
+        alert(current_url);
+
+        /*
+        var uri = new URI("?hello=world&hello=mars&foo=bar");
+        // remove an attribute
+        uri.removeSearch("hello"); */
     }
 </script>
 

@@ -200,7 +200,7 @@ class Article extends AbastractController{
         
         // defines the pagination
         $total_num_of_articles = ModelArticle::getNumOfArticles();
-        parent::definePagination("articles", $total_num_of_articles , $GLOBALS['url_prefix'] . "article", $current_page);
+        parent::definePagination($GLOBALS['max_num_of_articles_for_page'], $total_num_of_articles , $GLOBALS['url_prefix'] . "article", $current_page);
         
         $articles = ModelArticle::index($current_page, $GLOBALS['max_num_of_articles_for_page']); 
         

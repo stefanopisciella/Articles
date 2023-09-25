@@ -2,20 +2,15 @@
 namespace models;
 
 class Article {
+    /*
     public static function add($article) {
         $GLOBALS['f3']->get('DB')->exec(
             'INSERT INTO article (title, content) VALUES (?,?);',
             $article
         );
     }
-
-    public static function remove($article_id) {
-        $GLOBALS['f3']->get('DB')->exec(
-            'DELETE FROM article WHERE ID=?;',
-            $article_id
-        );
-    }
-
+    
+    
     public static function edit($edited_article, $article_id) {
         array_push($edited_article, $article_id);
         
@@ -28,12 +23,20 @@ class Article {
 
         return $edited_article;
     }
+    */
+
+    public static function remove($article_id) {
+        $GLOBALS['f3']->get('DB')->exec(
+            'DELETE FROM article WHERE ID=?;',
+            $article_id
+        );
+    }
 
     public static function save($article, $article_id) {
         if($article_id == null) {
             // CREATION of the article
             $GLOBALS['f3']->get('DB')->exec(
-                'INSERT INTO article (title, content, creation_datetime, last_update_datetime) VALUES (?,?, NOW(), NULL);',
+                'INSERT INTO article (title, content, creation_datetime, last_update_datetime) VALUES (?,?, NOW(), NOW());',
                 $article
             );
         } else {
@@ -86,6 +89,4 @@ class Article {
 
         return $num_of_articles;
     }
-
-    
 }
