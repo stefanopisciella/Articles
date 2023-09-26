@@ -1,15 +1,13 @@
-<button type="button" class="btn btn-primary" onclick="returnToParentPage();">Turn back</button>        
+<a href="<?php echo $previous_page; ?>" type="button" class="btn btn-primary btn-lg">
+    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+</a>        
 <div class="page-header">
     <h1><?php echo $article_title; ?></h1>
 </div>
 <label><?php echo $article_content; ?></label>
-<!--
-    <button type="button" class="btn btn-default" onclick="returnToParentPage()">
-        <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-    </button> 
--->
 
 <script>
+    /*
     // we need this function for extracting the parent's url of the current url
     function returnToParentPage() {
         var current_url = window.location.href;
@@ -25,5 +23,5 @@
         
         var parent_page_url = current_url.substr(0, i + 1);
         window.location.href = parent_page_url; // redirect to the parent url of the current url
-    }
+    } */
 </script>
