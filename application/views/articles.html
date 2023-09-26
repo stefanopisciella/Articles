@@ -9,17 +9,12 @@
             <th>#</th>
             <th>Title</th>
             <th>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle custom_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Publication <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="./article?page=1&order=1">From the most recent</a></li>
-                        <li><a href="./article?page=1&order=2">From the least recent</a></li>
-                    </ul>
-                </div>
+                <a type="button" href="./article?page=1&order=<?php echo $order1_dir; ?>">Publication <?php echo $direction_arrow_order1; ?></a>        
+
             </th>
-            <th><a type="button" name="2" onclick="sortArticles(this);">Last update &#8593</a></th>
+            <th>
+                <a type="button" href="./article?page=1&order=<?php echo $order2_dir; ?>">Last update <?php echo $direction_arrow_order2; ?></a>
+            </th>
             <th>Actions</th>
         </tr>
     </thead>

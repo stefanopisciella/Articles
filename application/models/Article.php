@@ -61,13 +61,48 @@ class Article {
         return $article;
     }
 
-    /*
-    public static function index() {
-        $articles = $GLOBALS['f3']->get('DB')->exec('SELECT * FROM article');
-        return $articles;
-    } */
+    public static function index($current_page, $max_num_of_articles_for_page, $order, $dir) {
+        if($order == 1) {
+            // it orders by the the creation_datetime column 
+            if($dir == 1) {
+                // most recently created article first (this is the default order)
+                $query = "SELECT * 
+                          FROM article 
+                          ORDER BY creation_datetime DESC
+                          LIMIT ?, ?";
+            } else if ($dir == 2) {
+                // least recently created article first
+                $query = "SELECT * 
+                          FROM article 
+                          ORDER BY creation_datetime ASC
+                          LIMIT ?, ?";
+            }
+        } else if ($order == 2) {
+            // it orders by the the last_update_datetime column 
+            if($dir == 1) {
+                // most recently updated article first
+                $query = "SELECT * 
+                          FROM article 
+                          ORDER BY last_update_datetime DESC
+                          LIMIT ?, ?";
+            } else if ($dir == 2) {
+                $query = "SELECT * 
+                          FROM article 
+                          ORDER BY last_update_datetime ASC
+                          LIMIT ?, ?";
+            }
+        }
+        
+        $parameters = array(
+            1 => ($current_page - 1) * $max_num_of_articles_for_page,
+            2 => $max_num_of_articles_for_page
+        );
 
-    public static function index($current_page, $max_num_of_articles_for_page, $order) {
+        $articles = $GLOBALS['f3']->get('DB')->exec($query, $parameters);
+
+        return $articles;
+
+         /*
         switch ($order) {
             case 1:
                 // most recently created article first (this is the default order)
@@ -97,16 +132,7 @@ class Article {
                           ORDER BY last_update_datetime ASC
                           LIMIT ?, ?"; 
                 break;
-        }
-        
-        $parameters = array(
-            1 => ($current_page - 1) * $max_num_of_articles_for_page,
-            2 => $max_num_of_articles_for_page
-        );
-
-        $articles = $GLOBALS['f3']->get('DB')->exec($query, $parameters);
-
-        return $articles;
+        } */
     }
 
     public static function getNumOfArticles() {

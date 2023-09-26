@@ -201,17 +201,26 @@ class Article extends AbastractController{
         }
         
         if($GLOBALS['f3']->exists('GET.order')) {
-            $order = $GLOBALS['f3']->get('GET.order');
+            $order = $GLOBALS['f3']->get('GET.order'); // $order indicates the order of the articles of the current page 
         } else {
-            // it considers the default order (most recently created article first)
+            // it considers the default order (order by the creation_datetime column)
             $order = 1; 
         }
+
+        if($GLOBALS['f3']->exists('GET.dir')) {
+            $dir = $GLOBALS['f3']->get('GET.dir');
+        } else {
+            // it considers the default direction (most recently created article first)
+            $dir = 1;  
+        }
+
+        Article::setTheDirectionOfArticlesOrder($order, $dir);
         
         // defines the pagination
         $total_num_of_articles = ModelArticle::getNumOfArticles();
         parent::definePagination($GLOBALS['max_num_of_articles_for_page'], $total_num_of_articles , $GLOBALS['url_prefix'] . "article", $current_page, $order);
         
-        $articles = ModelArticle::index($current_page, $GLOBALS['max_num_of_articles_for_page'], $order); 
+        $articles = ModelArticle::index($current_page, $GLOBALS['max_num_of_articles_for_page'], $order, $dir); 
         
         Article::injectArticlesIntoCurrentPage($articles);
     }
@@ -241,6 +250,36 @@ class Article extends AbastractController{
             echo 'No available articles';
         }
     }
+
+    public static function setTheDirectionOfArticlesOrder($order, $dir) {
+        
+        
+        // dir = 1 is DESC
+        // dir = 2 is ASC
+        if($order == 1) {
+            if($dir == 1) {
+                $GLOBALS['f3']->set('order1_dir', 2);
+
+                $GLOBALS['f3']->set('direction_arrow_order1', "&uarr;");
+            } else if ($dir == 2) {
+                // it sets the default dir (dir=1) of the order=2
+                $GLOBALS['f3']->set('order1_dir', 1);
+            }
+
+            $GLOBALS['f3']->set('order2_dir', 1);
+        } else if ($order == 2) {
+            if($dir == 1) {
+                $GLOBALS['f3']->set('order2_dir', 2);
+            } else if ($dir == 2) {
+                // it sets the default dir (dir=1) of the order=2
+                $GLOBALS['f3']->set('order2_dir', 1);
+            }
+
+            $GLOBALS['f3']->set('order1_dir', 1);
+        } 
+    }
+
+    
 } 
 
 
