@@ -113,32 +113,24 @@ class Article {
     public static function search($keywords) {
         $keywords = trim($keywords);
 
-        //
-        // $keywords = explode(' ', $keywords); // now $keywords contains an array of strings
-
-        $keywords = array(
-            1 => $keywords
-        );
+        $keywords = explode(' ', $keywords); // now $keywords contains an array of strings
 
         $keywords_num = count($keywords);
 
-        // 
-        echo $keywords_num;
-
         $query = "SELECT * FROM article
-                  WHERE ";
+                  WHERE "; 
 
         for($i=0;$i<$keywords_num - 1;$i++) {
-            $query .= "title LIKE '%?%' && ";
+            $query .= "title LIKE '%{$keywords[$i]}%' && ";
         }
-        $query .= "title LIKE '%?%';";
+        $query .= "title LIKE '%{$keywords[$keywords_num - 1]}%'";
 
-        echo $query;
+        // 
+        echo $query; 
 
-        $matched_articles = $GLOBALS['f3']->get('DB')->exec($query, $keywords);
+        $matched_articles = $GLOBALS['f3']->get('DB')->exec($query);
 
         return $matched_articles;
-
     }
 
 }
