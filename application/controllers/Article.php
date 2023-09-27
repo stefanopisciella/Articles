@@ -191,6 +191,11 @@ class Article extends AbastractController{
             $dir = 1;  
         }
 
+        if($GLOBALS['f3']->exists('GET.search')) {
+            $keywords = $GLOBALS['f3']->get('GET.search');
+            ModelArticle::search($keywords);
+        }
+
         Article::setTheDirectionOfArticlesOrder($order, $dir);
         
         // defines the pagination

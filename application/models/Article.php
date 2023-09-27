@@ -101,38 +101,6 @@ class Article {
         $articles = $GLOBALS['f3']->get('DB')->exec($query, $parameters);
 
         return $articles;
-
-         /*
-        switch ($order) {
-            case 1:
-                // most recently created article first (this is the default order)
-                $query = "SELECT * 
-                          FROM article 
-                          ORDER BY creation_datetime DESC
-                          LIMIT ?, ?";               
-                break;
-            case 2:
-                // least recently created article first
-                $query = "SELECT * 
-                          FROM article 
-                          ORDER BY creation_datetime ASC
-                          LIMIT ?, ?";  
-                break;
-            case 3:
-                // most recently updated article first
-                $query = "SELECT * 
-                          FROM article 
-                          ORDER BY last_update_datetime DESC
-                          LIMIT ?, ?";  
-                break;
-            case 4:
-                // least recently updated article first
-                $query = "SELECT * 
-                          FROM article 
-                          ORDER BY last_update_datetime ASC
-                          LIMIT ?, ?"; 
-                break;
-        } */
     }
 
     public static function getNumOfArticles() {
@@ -141,4 +109,36 @@ class Article {
 
         return $num_of_articles;
     }
+
+    public static function search($keywords) {
+        $keywords = trim($keywords);
+
+        //
+        // $keywords = explode(' ', $keywords); // now $keywords contains an array of strings
+
+        $keywords = array(
+            1 => $keywords
+        );
+
+        $keywords_num = count($keywords);
+
+        // 
+        echo $keywords_num;
+
+        $query = "SELECT * FROM article
+                  WHERE ";
+
+        for($i=0;$i<$keywords_num - 1;$i++) {
+            $query .= "title LIKE '%?%' && ";
+        }
+        $query .= "title LIKE '%?%';";
+
+        echo $query;
+
+        $matched_articles = $GLOBALS['f3']->get('DB')->exec($query, $keywords);
+
+        return $matched_articles;
+
+    }
+
 }
