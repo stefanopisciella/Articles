@@ -57,6 +57,13 @@
 
         // it checks if the current url contains the query string
         if(current_url.toString().includes('?') == true) {
+            // the current URL has the query string
+
+            // the following 3 instructions remove all prexisting parameters so that we can replace them with the new parameters relative to the pagination of the search pages
+            params.delete("page");
+            params.delete("order");
+            params.delete("dir");
+            
             // it search for an eventual search param for avoiding the presesence of more than one search param in the current_url
             if(params.has("search") == true) {
                 // 
@@ -69,17 +76,14 @@
                 //
                 alert("BOOOO");
                 
-                // current_url.search = ""; // it removes all the prexisting params
-                current_url.search = '';
-                current_url.hash = '';
-                
+
                 params.append("search", keywords);
 
+                
                 location.search = params.toString(); // redirect to the current url containing the new query string
-
-                // document.location.href = current_url + '&search=' + keywords; 
             }
         } else {
+            
             document.location.href = current_url + '?search=' + keywords; 
         }
     }

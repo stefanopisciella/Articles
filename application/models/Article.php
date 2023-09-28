@@ -175,5 +175,4 @@ class Article {
 
         return $result['count'];
     }
-
 }
