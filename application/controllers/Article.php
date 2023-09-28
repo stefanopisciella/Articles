@@ -198,6 +198,8 @@ class Article extends AbastractController{
 
             $articles = ModelArticle::search($keywords, $current_page, $GLOBALS['max_num_of_articles_for_page'], $order, $dir);
             $total_num_of_articles = ModelArticle::getNumOfMatchingArticles($keywords);
+
+            $GLOBALS['f3']->set('results_num_label', '<label><small>' . $total_num_of_articles .  ' results</small></label>'); 
         } else {
             $keywords = "";
 
@@ -205,6 +207,8 @@ class Article extends AbastractController{
 
             $articles = ModelArticle::index($current_page, $GLOBALS['max_num_of_articles_for_page'], $order, $dir); 
             $total_num_of_articles = ModelArticle::getNumOfArticles();
+
+            $GLOBALS['f3']->set('results_num_label', ''); // hide the results_num label
         }
 
         Article::setTheDirectionOfArticlesOrder($order, $dir);
