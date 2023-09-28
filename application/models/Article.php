@@ -160,9 +160,6 @@ class Article {
         
         $matched_articles = $GLOBALS['f3']->get('DB')->exec($query);
 
-        // 
-        echo $query;
-
         return $matched_articles;
     }
 
