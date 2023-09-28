@@ -43,7 +43,7 @@ class AbastractController{
             $search_param = "&search=";
         }
         
-        $num_pages_needed = $number_of_items / $max_num_of_items_for_page;
+        $num_pages_needed = intval($number_of_items / $max_num_of_items_for_page); // !!! remamber to convert this value into an Integer using the function intval()
         if($number_of_items % $max_num_of_items_for_page != 0) {
             // the last page will contain a number of items different to max_num_of_items_for_page
             $num_pages_needed += 1;
