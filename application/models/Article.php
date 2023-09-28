@@ -110,14 +110,15 @@ class Article {
         return $num_of_articles;
     }
 
-    public static function search($keywords) {
+    public static function search($keywords, $current_page, $max_num_of_articles_for_page, $order, $dir) {
         $keywords = trim($keywords);
 
         $keywords = explode(' ', $keywords); // now $keywords contains an array of strings
 
         $keywords_num = count($keywords);
 
-        $query = "SELECT * FROM article
+        $query = "SELECT * 
+                  FROM article
                   WHERE "; 
 
         for($i=0;$i<$keywords_num - 1;$i++) {
@@ -125,12 +126,54 @@ class Article {
         }
         $query .= "title LIKE '%{$keywords[$keywords_num - 1]}%'";
 
-        // 
-        echo $query; 
+        // add the ORDER BY to the query
+        if($order == 1) {
+            // it orders by the the creation_datetime column 
+            if($dir == 1) {
+                // most recently created article first (this is the default order)
+                $query .= "ORDER BY creation_datetime DESC ";
+            } else if ($dir == 2) {
+                // least recently created article first
+                $query .= "ORDER BY creation_datetime ASC ";
+            }
+        } else if ($order == 2) {
+            // it orders by the the last_update_datetime column 
+            if($dir == 1) {
+                // most recently updated article first
+                $query .= "ORDER BY last_update_datetime DESC ";
+            } else if ($dir == 2) {
+                $query .= "ORDER BY last_update_datetime ASC ";
+            }
+        }
 
+        $offset_param = ($current_page - 1) * $max_num_of_articles_for_page;
+        $limit_param = $max_num_of_articles_for_page;
+        $query .= "LIMIT {$offset_param}, {$limit_param};";
+        
         $matched_articles = $GLOBALS['f3']->get('DB')->exec($query);
 
         return $matched_articles;
+    }
+
+    public static function getNumOfMatchingArticles($keywords) {
+        $keywords = trim($keywords);
+
+        $keywords = explode(' ', $keywords); // now $keywords contains an array of strings
+
+        $keywords_num = count($keywords);
+
+        $query = "SELECT COUNT(ID) as count 
+                  FROM article
+                  WHERE "; 
+
+        for($i=0;$i<$keywords_num - 1;$i++) {
+            $query .= "title LIKE '%{$keywords[$i]}%' && ";
+        }
+        $query .= "title LIKE '%{$keywords[$keywords_num - 1]}%'";
+
+        $result = $GLOBALS['f3']->get('DB')->exec($query)[0];
+
+        return $result['count'];
     }
 
 }

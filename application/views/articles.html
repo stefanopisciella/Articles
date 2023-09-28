@@ -48,18 +48,53 @@
   
 <script>
     function searchKeywords() {
+        var current_url = new URL(document.location.href);
+        
         var keywords = document.getElementById("keywords_input").value;
 
-        var current_url = document.location.href;
-        
+        // var current_url = document.location.href;
+        var params = new URLSearchParams(current_url.search);
+
         // it checks if the current url contains the query string
-        if(current_url.includes('?') == true) {
-            document.location.href = current_url + '&search=' + keywords; // it concats che search param to the prexisting params
+        if(current_url.toString().includes('?') == true) {
+            // it search for an eventual search param for avoiding the presesence of more than one search param in the current_url
+            if(params.has("search") == true) {
+                // 
+                alert("SIIII");
+
+                params.set("search", keywords); // replace the keywords of the old search with the keywords of the new search
+
+                location.search = params.toString(); // redirect to the current url with the search parameter updated with its new value
+            } else {
+                //
+                alert("BOOOO");
+                
+                // current_url.search = ""; // it removes all the prexisting params
+                current_url.search = '';
+                current_url.hash = '';
+                
+                params.append("search", keywords);
+
+                location.search = params.toString(); // redirect to the current url containing the new query string
+
+                // document.location.href = current_url + '&search=' + keywords; 
+            }
         } else {
             document.location.href = current_url + '?search=' + keywords; 
-
         }
     }
+
+    /*
+    const url = 'https://example.com/posts?page=5&sort=desc#hash';
+
+const urlObj = new URL(url);
+
+urlObj.search = '';
+urlObj.hash = '';
+
+const result = urlObj.toString();
+
+console.log(result); */
 
     
     

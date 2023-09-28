@@ -193,17 +193,20 @@ class Article extends AbastractController{
 
         if($GLOBALS['f3']->exists('GET.search')) {
             $keywords = $GLOBALS['f3']->get('GET.search');
-            ModelArticle::search($keywords);
+
+            $articles = ModelArticle::search($keywords, $current_page, $GLOBALS['max_num_of_articles_for_page'], $order, $dir);
+            $total_num_of_articles = ModelArticle::getNumOfMatchingArticles($keywords);
+        } else {
+            $keywords = "";
+
+            $articles = ModelArticle::index($current_page, $GLOBALS['max_num_of_articles_for_page'], $order, $dir); 
+            $total_num_of_articles = ModelArticle::getNumOfArticles();
         }
 
         Article::setTheDirectionOfArticlesOrder($order, $dir);
         
-        // defines the pagination
-        $total_num_of_articles = ModelArticle::getNumOfArticles();
-        parent::definePagination($GLOBALS['max_num_of_articles_for_page'], $total_num_of_articles , $GLOBALS['url_prefix'] . "article", $current_page, $order, $dir);
-        
-        $articles = ModelArticle::index($current_page, $GLOBALS['max_num_of_articles_for_page'], $order, $dir); 
-        
+        parent::definePagination($GLOBALS['max_num_of_articles_for_page'], $total_num_of_articles , $GLOBALS['url_prefix'] . "article", $current_page, $order, $dir, $keywords);
+
         Article::injectArticlesIntoCurrentPage($articles);
     }
 
