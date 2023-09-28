@@ -121,10 +121,18 @@ class Article {
                   FROM article
                   WHERE "; 
 
+        /*
+        exmple of a 2 keywords query =
+            SELECT * 
+            FROM article
+            WHERE (title LIKE '%ferrari%' || content LIKE '%ferrari%') && (title LIKE '%scuderia%' || content LIKE '%scuderia%');
+        */
+
         for($i=0;$i<$keywords_num - 1;$i++) {
-            $query .= "title LIKE '%{$keywords[$i]}%' && ";
+            // $query .= "title LIKE '%{$keywords[$i]}%' && ";
+            $query .= "(title LIKE '%{$keywords[$i]}%' || content LIKE '%{$keywords[$i]}%') && "; // LIKE by default does a case-insensitive research
         }
-        $query .= "title LIKE '%{$keywords[$keywords_num - 1]}%'";
+        $query .= "(title LIKE '%{$keywords[$keywords_num - 1]}%' || content LIKE '%{$keywords[$keywords_num - 1]}%') "; // LIKE by default does a case-insensitive research
 
         // add the ORDER BY to the query
         if($order == 1) {
@@ -152,6 +160,9 @@ class Article {
         
         $matched_articles = $GLOBALS['f3']->get('DB')->exec($query);
 
+        // 
+        echo $query;
+
         return $matched_articles;
     }
 
@@ -167,9 +178,9 @@ class Article {
                   WHERE "; 
 
         for($i=0;$i<$keywords_num - 1;$i++) {
-            $query .= "title LIKE '%{$keywords[$i]}%' && ";
+            $query .= "(title LIKE '%{$keywords[$i]}%' || content LIKE '%{$keywords[$i]}%') && "; // LIKE by default does a case-insensitive research
         }
-        $query .= "title LIKE '%{$keywords[$keywords_num - 1]}%'";
+        $query .= "(title LIKE '%{$keywords[$keywords_num - 1]}%' || content LIKE '%{$keywords[$keywords_num - 1]}%')"; // LIKE by default does a case-insensitive research
 
         $result = $GLOBALS['f3']->get('DB')->exec($query)[0];
 
