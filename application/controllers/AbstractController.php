@@ -60,7 +60,7 @@ class AbastractController{
             $url_to_page = $url_to_html_view . "?page=" . $i . "&order=" . $order . "&dir=" . $dir . $search_param . $keywords; 
 
             if($i == $current_page) {
-                $page_buttons .= AbastractController::addCurrentPageButton($current_page, $url_to_page); // this button in relative to the current page
+                $page_buttons .= AbastractController::addCurrentPageButton($current_page); // this button in relative to the current page
             } else {
                 $page_buttons .= '<li><a href="' . $url_to_page. '">'. $i .'</a></li>';
             }
@@ -68,8 +68,9 @@ class AbastractController{
         $GLOBALS['f3']->set('page_buttons', $page_buttons);
     }
 
-    public static function addCurrentPageButton($current_page, $url_to_page){
-        return '<li class="active"><a href="' . $url_to_page . '">' . $current_page . '<span class="sr-only">(current)</span></a></li>'; // bootstrap documentation recommends to use <span> instead of <a>
+    public static function addCurrentPageButton($current_page){
+        return '<li class="active"><a href="">' . $current_page . '<span class="sr-only">(current)</span></a></li>'; // bootstrap documentation recommends to use <span> instead of <a>
+        // note that the href attribute of this button is empty because this button hasn't to redirect to any page (this because we are considering the current page button)
     }
 
     public static function addPreviousPageButton($current_page, $url_to_html_view, $order, $dir, $keywords, $search_param){
