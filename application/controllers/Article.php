@@ -194,10 +194,14 @@ class Article extends AbastractController{
         if($GLOBALS['f3']->exists('GET.search')) {
             $keywords = $GLOBALS['f3']->get('GET.search');
 
+            $GLOBALS['f3']->set('search_param', '&search=' . $keywords); // it adds the search param into the href attribute of the order button
+
             $articles = ModelArticle::search($keywords, $current_page, $GLOBALS['max_num_of_articles_for_page'], $order, $dir);
             $total_num_of_articles = ModelArticle::getNumOfMatchingArticles($keywords);
         } else {
             $keywords = "";
+
+            $GLOBALS['f3']->set('search_param', ''); // it doesn't add the search param into the href attribute of the order button
 
             $articles = ModelArticle::index($current_page, $GLOBALS['max_num_of_articles_for_page'], $order, $dir); 
             $total_num_of_articles = ModelArticle::getNumOfArticles();
