@@ -46,13 +46,17 @@
     
     <?php echo $results_num_label; ?>
 
-    <nav aria-label="Page navigation">
-        <ul class="pagination">
-            <?php echo $previous_page_button; ?>
-            <?php echo $page_buttons; ?>
-            <?php echo $next_page_button; ?>
-        </ul>
-    </nav>
+    <div class="row"> 
+        <div class="text-center">
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <?php echo $previous_page_button; ?>
+                    <?php echo $page_buttons; ?>
+                    <?php echo $next_page_button; ?>
+                </ul>
+            </nav>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -61,38 +65,22 @@
         
         var keywords = document.getElementById("keywords_input").value;
 
-        // var current_url = document.location.href;
         var params = new URLSearchParams(current_url.search);
 
         // it checks if the current url contains the query string
         if(current_url.toString().includes('?') == true) {
             // the current URL has the query string
 
-            // the following 3 instructions remove all prexisting parameters so that we can replace them with the new parameters relative to the pagination of the search pages
+            // the following 4 instructions remove all prexisting parameters so that we can replace them with the new parameters relative to the pagination of the search pages
             params.delete("page");
             params.delete("order");
             params.delete("dir");
-            
-            // it search for an eventual search param for avoiding the presesence of more than one search param in the current_url
-            if(params.has("search") == true) {
-                // 
-                alert("SIIII");
+            params.delete("search");
 
-                params.set("search", keywords); // replace the keywords of the old search with the keywords of the new search
+            params.append("search", keywords); // it adds the new search parameter
 
-                location.search = params.toString(); // redirect to the current url with the search parameter updated with its new value
-            } else {
-                //
-                alert("BOOOO");
-                
-
-                params.append("search", keywords);
-
-                
-                location.search = params.toString(); // redirect to the current url containing the new query string
-            }
+            location.search = params.toString(); // redirect to the current url that now contains the new parameters
         } else {
-            
             document.location.href = current_url + '?search=' + keywords; 
         }
     }
