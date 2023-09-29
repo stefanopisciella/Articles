@@ -11,7 +11,7 @@
               <div class="input-group">
                 <input id="keywords_input" type="text" class="form-control" placeholder="Search for...">
                 <span class="input-group-btn">
-                  <button class="btn btn-default" type="button" onclick="searchKeywords();">
+                  <button id="search_keywords_button" class="btn btn-default" type="button" onclick="searchKeywords();">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                   </button>
                 </span>
@@ -85,11 +85,21 @@
         }
     }
 
+    // Get the input field
+    var input = document.getElementById("keywords_input");
 
+    // Execute a function when the user presses a key on the keyboard
+    input.addEventListener("keypress", function(event) {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the button element with a click
+        document.getElementById("search_keywords_button").click();
+    }
+    });
     
-    
-    
-    
+
     
     function getClickedButtonValue(clicked_button_object) {
         clicked_button_value = clicked_button_object.value;
