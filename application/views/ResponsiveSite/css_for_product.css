@@ -1,3 +1,7 @@
-.third_row{
-    margin-top: 0px;
+.item-secondary-images {
+    float:none;
+    display:inline-block;
+    vertical-align:middle;
+    margin-right:-4px;
+    background-color: blue;
 }
