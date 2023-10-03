@@ -1,7 +1,23 @@
-.item-secondary-images {
-    float:none;
-    display:inline-block;
-    vertical-align:middle;
-    margin-right:-4px;
-    background-color: blue;
+#product_name{
+    font-size: 24px;
+    font-weight: bold;
 }
+
+#price{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#quantity{
+    width: 35px;
+}
+
+.descr_attr_name{
+    color: #637381;
+    font-size: 14px;
+}
+
+.descr_attr_value{
+    font-size: 14px;
+}
+

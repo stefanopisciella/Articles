@@ -1,32 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css_for_product.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResponsiveSite</title>
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="css_for_product.css">
  
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.19.11/URI.min.js"></script>
-    </head>
-    <body>
-        <div class="container-fluid">
-            <div class="row">
-                <!-- slider for small devices -->
-                <div class="hidden-lg hidden-md mobile-image-slider">
+    <!-- Latest compiled and minified CSS -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+     <!-- jQuery library -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+     <!-- Latest compiled JavaScript -->
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.19.11/URI.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- TOP MENU AND HEADER -->
+        <div class="row">
+
+
+        </div>
+        <!-- END TOP MENU AND HEADER -->
+        <div class="row">
+            <div class="col-md-5 col-sm-12"> <!-- CHECK -->
+                <!-- PRODUCT IMGS FOR DEVICES WITH BIG VIEWPORT -->
+                <div class="hidden-sm hidden-xs">
+                    <!-- #1 ROW OF IMGS -->
+                    <div class="row">
+                        <!-- #1 IMG (main img)-->
+                        <div class="col-md-12">
+                            <a href="" class="thumbnail">
+                              <img src="../../../img/1.jpg" alt="...">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- #2 ROW OF IMGS -->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="" class="thumbnail">
+                              <img src="../../../img/2.jpg" alt="...">
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="" class="thumbnail">
+                              <img src="../../../img/3.jpg" alt="...">
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="" class="thumbnail">
+                              <img src="../../../img/4.jpg" alt="...">
+                            </a>
+                        </div>
+                    </div>
+                    <!-- #3 ROW OF IMGS -->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="" class="thumbnail">
+                              <img src="../../../img/5.jpg" alt="...">
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="" class="thumbnail">
+                              <img src="../../../img/6.jpg" alt="...">
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="" class="thumbnail">
+                              <img src="../../../img/7.jpg" alt="...">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END PRODUCT IMGS FOR DEVICES WITH BIG VIEWPORT -->
+                
+                <!-- PRODUCT IMGS FOR DEVICES WITH SMALL VIEWPORT -->
+                <div class="hidden-lg hidden-md">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
-                          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                         </ol>
                       
                         <!-- Wrapper for slides -->
@@ -73,7 +131,7 @@
                                     ...
                                 </div>
                             </div>
-                          ...
+                            ...
                         </div>
                       
                         <!-- Controls -->
@@ -85,81 +143,93 @@
                           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                           <span class="sr-only">Next</span>
                         </a>
-                      </div>
-                </div>
-                
-                <div class="hidden-sm hidden-xs">
-                    <div class="col-lg-7 col-md-7 col-sm-12">
-                        <div class="row">
-                            <!-- #1 row of imgs -->
-                            <!-- #1 img -->
-                            <div class="col-md-12">
-                                <a href="#" class="thumbnail">
-                                  <img src="../../../img/1.jpg" alt="...">
-                                </a>
-                            </div>
-                            <!-- #2 row of imgs -->
-                            <!-- #2 img -->
-                            <div class="col-md-4">
-                                <a href="#" class="thumbnail">
-                                  <img src="../../../img/2.jpg" alt="...">
-                                </a>
-                            </div>
-                            <!-- #2 row of imgs -->
-                            <!-- #3 img -->
-                            <div class="col-md-4">
-                                <a href="#" class="thumbnail">
-                                  <img src="../../../img/3.jpg" alt="...">
-                                </a>
-                            </div>
-                            <!-- #2 row of imgs -->
-                            <!-- #4 img -->
-                            <div class="col-md-4">
-                                <a href="#" class="thumbnail">
-                                  <img src="../../../img/4.jpg" alt="...">
-                                </a>
-                            </div>
-                        </div> <!-- closing tag devi row -->
-            <div id="new" class="row" style="border: 5px solid;">
-
-                            <!-- #3 row of imgs -->
-                            <!-- #5 img -->
-                            <div class="col-md-4">
-                                <a href="#" class="thumbnail">
-                                  <img src="../../../img/5.jpg" alt="...">
-                                </a>
-                            </div>
-                            <!-- #3 row of imgs -->
-                            <!-- #6 img -->
-                            <div class="col-md-4">
-                                <a href="#" class="thumbnail">
-                                  <img src="../../../img/6.jpg" alt="...">
-                                </a>
-                            </div>
-                            <!-- #3 row of imgs -->
-                            <!-- #7 img -->
-                            <div class="col-md-4">
-                                <a href="#" class="thumbnail">
-                                  <img src="../../../img/7.jpg" alt="...">
-                                </a>
-                            </div>
-            </div>
                     </div>
-                    <div class="col-lg-5 col-md-5">
-                        <!-- other content -->
+                </div>  
+                <!-- END PRODUCT IMGS FOR DEVICES WITH SMALL VIEWPORT -->
+            </div>
+            <!-- PRODUCT DESCRIPTION -->
+            <div class="col-md-7">             <!-- CHECK -->
+                <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-md-9">
+                                <h1 id="product_name">RICKO LANCIA <small>DELTA HF INTEGRALE EVOLUZIONE II MARTINI N 1 RALLY MONTECARLO 1992</small></h1>
+                                <!-- PRODUCT DESCRIPTION -->
+                                <div>
+                                    <span class="descr_attr_name">Scala: </span> <span class="descr_attr_value">1/87</span>
+                                </div>
+                                <div>
+                                    <span class="descr_attr_name">Codice Carmodel: </span> <span class="descr_attr_value">CAR160145</span>
+                                </div>
+                                <div>
+                                    <span class="descr_attr_name">Codice produttore: </span> <span class="descr_attr_value">38314</span>
+                                </div>
+                                <div>
+                                    <span class="descr_attr_name">Colore: </span> <span class="descr_attr_value">WHITE BLUE RED</span>
+                                </div>
+                                <div>
+                                    <span class="descr_attr_name">Materiale: </span> <span class="descr_attr_value">die-cast</span>
+                                </div>
+                                <div>
+                                    <span class="descr_attr_name">Anno: </span> <span class="descr_attr_value">1992</span>
+                                </div>
+                                <!-- END PRODUCT DESCRIPTION -->
+                            </div>
 
-                    
+                           
+
+                            
+                            
+                            
+
+
+
+
+
+
+
+
+
+                            <!-- PURCHASE BOX -->
+                            <div class="col-md-3">
+                                <!-- TODO -->
+                                <div id="purchase_box">
+                                    <span id="price">€10.50</span>
+                                
+                                    <form action="">
+                                        <div style="border-style: dotted; width: 150px;">
+                                            <input style="display: inline; margin-bottom: 0px;" type="text" id="quantity" class="form-control" name="quantity" value="1" maxlength="2" size="2">
+                                            <input style="display: inline; margin-bottom: 0px;" id="buy_button" type="submit" class="btn btn-primary" value="Add to cart">
+                                        </div>
+                                    </form>
+                                </div>
+
+                                    
+                               
+                            </div>
+                            <!-- END PURCHASE BOX -->
+                                                        
+                            
+
+
+
+
+
+
+                        </div>
                     </div>
 
                 </div>
             </div>
-            <!-- other content -->
-            </div>  
+
+
+
+
+
+
         </div>
-    </body>
+    </div>
+
+
+</body>
 </html>
-
-
-
-
-
