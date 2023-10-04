@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-md-5 col-sm-12"> <!-- CHECK -->
                 <!-- PRODUCT IMGS FOR DEVICES WITH BIG VIEWPORT -->
-                <div class="hidden-sm hidden-xs">
+                <div class="hidden-xs hidden-sm">
                     <!-- #1 ROW OF IMGS -->
                     <div class="row">
                         <!-- #1 IMG (main img)-->
@@ -147,78 +147,98 @@
                 </div>  
                 <!-- END PRODUCT IMGS FOR DEVICES WITH SMALL VIEWPORT -->
             </div>
-            <!-- PRODUCT DESCRIPTION -->
-            <div class="col-md-7">             <!-- CHECK -->
-                <div class="row">
+
+            <div class="col-md-7 col-sm-12 col-xs-12">  <!-- !!! NOTE col-sm-12 col-xs-12 (they are correct)  -->
+                <div class="hidden-xs hidden-sm" id="hide_panel">   
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <div class="col-md-9">
-                                <h1 id="product_name">RICKO LANCIA <small>DELTA HF INTEGRALE EVOLUZIONE II MARTINI N 1 RALLY MONTECARLO 1992</small></h1>
-                                <!-- PRODUCT DESCRIPTION -->
-                                <div>
-                                    <span class="descr_attr_name">Scala: </span> <span class="descr_attr_value">1/87</span>
-                                </div>
-                                <div>
-                                    <span class="descr_attr_name">Codice Carmodel: </span> <span class="descr_attr_value">CAR160145</span>
-                                </div>
-                                <div>
-                                    <span class="descr_attr_name">Codice produttore: </span> <span class="descr_attr_value">38314</span>
-                                </div>
-                                <div>
-                                    <span class="descr_attr_name">Colore: </span> <span class="descr_attr_value">WHITE BLUE RED</span>
-                                </div>
-                                <div>
-                                    <span class="descr_attr_name">Materiale: </span> <span class="descr_attr_value">die-cast</span>
-                                </div>
-                                <div>
-                                    <span class="descr_attr_name">Anno: </span> <span class="descr_attr_value">1992</span>
-                                </div>
-                                <!-- END PRODUCT DESCRIPTION -->
-                            </div>
-
-                           
-
-                            
-                            
-                            
-
-
-
-
-
-
-
-
-
-                            <!-- PURCHASE BOX -->
-                            <div class="col-md-3">
-                                <!-- TODO -->
-                                <div id="purchase_box">
-                                    <span id="price">€10.50</span>
-                                
-                                    <form action="">
-                                        <div style="border-style: dotted; width: 150px;">
-                                            <input style="display: inline; margin-bottom: 0px;" type="text" id="quantity" class="form-control" name="quantity" value="1" maxlength="2" size="2">
-                                            <input style="display: inline; margin-bottom: 0px;" id="buy_button" type="submit" class="btn btn-primary" value="Add to cart">
-                                        </div>
-                                    </form>
+                            <div class="row">
+                                <div class="col-lg-9">
+                                    <h1 id="product_name">RICKO LANCIA <small>DELTA HF INTEGRALE EVOLUZIONE II MARTINI N 1 RALLY MONTECARLO 1992</small></h1>
+                                    <!-- PRODUCT DESCRIPTION -->
+                                    <div>
+                                        <span class="descr_attr_name">Scala: </span> <span class="descr_attr_value">1/87</span>
+                                    </div>
+                                    <div>
+                                        <span class="descr_attr_name">Codice Carmodel: </span> <span class="descr_attr_value">CAR160145</span>
+                                    </div>
+                                    <div>
+                                        <span class="descr_attr_name">Codice produttore: </span> <span class="descr_attr_value">38314</span>
+                                    </div>
+                                    <div>
+                                        <span class="descr_attr_name">Colore: </span> <span class="descr_attr_value">WHITE BLUE RED</span>
+                                    </div>
+                                    <div>
+                                        <span class="descr_attr_name">Materiale: </span> <span class="descr_attr_value">die-cast</span>
+                                    </div>
+                                    <div>
+                                        <span class="descr_attr_name">Anno: </span> <span class="descr_attr_value">1992</span>
+                                    </div>
+                                    <!-- END PRODUCT DESCRIPTION -->
                                 </div>
 
+                                <!-- PURCHASE BOX -->
+                                <div class="col-lg-3">
+                                    <!-- TODO -->
+                                    <div id="purchase_box" style="height: 75px; width: 130px;">
+                                        <span id="price">€10.50</span>
                                     
-                               
+                                        <form action="">
+                                            <div style="width: 150px;">
+                                                <input style="display: inline;" type="text" id="quantity" class="form-control" name="quantity" value="1" maxlength="2" size="2">
+                                                <input style="display: inline;" id="buy_button" type="submit" class="btn btn-primary" value="Add to cart">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- END PURCHASE BOX -->
                             </div>
-                            <!-- END PURCHASE BOX -->
-                                                        
-                            
-
-
-
-
-
-
+                                                            
                         </div>
                     </div>
+                </div>
 
+                <div class="hidden-lg hidden-md" id="unhide_panel">
+                    <div class="row">
+                        <div class="col-md-9 col-lg-9">
+                            <h1 id="product_name">RICKO LANCIA <small>DELTA HF INTEGRALE EVOLUZIONE II MARTINI N 1 RALLY MONTECARLO 1992</small></h1>
+                            <!-- PRODUCT DESCRIPTION -->
+                            <div>
+                                <span class="descr_attr_name">Scala: </span> <span class="descr_attr_value">1/87</span>
+                            </div>
+                            <div>
+                                <span class="descr_attr_name">Codice Carmodel: </span> <span class="descr_attr_value">CAR160145</span>
+                            </div>
+                            <div>
+                                <span class="descr_attr_name">Codice produttore: </span> <span class="descr_attr_value">38314</span>
+                            </div>
+                            <div>
+                                <span class="descr_attr_name">Colore: </span> <span class="descr_attr_value">WHITE BLUE RED</span>
+                            </div>
+                            <div>
+                                <span class="descr_attr_name">Materiale: </span> <span class="descr_attr_value">die-cast</span>
+                            </div>
+                            <div>
+                                <span class="descr_attr_name">Anno: </span> <span class="descr_attr_value">1992</span>
+                            </div>
+                            <!-- END PRODUCT DESCRIPTION -->
+                        </div>
+
+                        <!-- PURCHASE BOX -->
+                        <div class="col-lg-3">
+                            <!-- TODO -->
+                            <div id="purchase_box">
+                                <span id="price">€10.50</span>
+                            
+                                <form action="">
+                                    <div style="width: 150px;">
+                                        <input style="display: inline;" type="text" id="quantity" class="form-control" name="quantity" value="1" maxlength="2" size="2">
+                                        <input style="display: inline;" id="buy_button" type="submit" class="btn btn-primary" value="Add to cart">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -226,8 +246,6 @@
 
 
 
-
-        </div>
     </div>
 
 
